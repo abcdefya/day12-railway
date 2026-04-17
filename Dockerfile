@@ -10,7 +10,7 @@ WORKDIR /build
 RUN apt-get update && apt-get install -y gcc libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY 06-lab-complete/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 
@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=builder /install /usr/local
 
 # Copy application (paths relative to repo root — docker context is .)
-COPY 06-lab-complete/app/ ./app/
+COPY app/ ./app/
 COPY utils/ ./utils/
 
 RUN chown -R agent:agent /app
