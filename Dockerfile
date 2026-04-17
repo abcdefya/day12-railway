@@ -47,4 +47,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
     || exit 1
 
 # Use ENTRYPOINT + CMD so shell expands $PORT correctly for Railway
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["/bin/bash", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
